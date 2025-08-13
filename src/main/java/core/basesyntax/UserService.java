@@ -8,7 +8,7 @@ public class UserService extends PasswordValidator {
         }
 
         // Використовуємо метод з PasswordValidator (припускаю, що він є)
-        validate(password, repeatPassword`);
+        validate(password, repeatPassword);
 
         saveUser(user);
     }
