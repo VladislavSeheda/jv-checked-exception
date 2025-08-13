@@ -7,9 +7,7 @@ public class UserService extends PasswordValidator {
             throw new PasswordValidationException("Passwords do not match");
         }
 
-        // Використовуємо метод з PasswordValidator (припускаю, що він є)
-        validate(password, repeatPassword);
-
+        validate(password, repeatPassword);  // этот метод кидает checked exception, поэтому throws надо здесь
         saveUser(user);
     }
 
