@@ -1,17 +1,15 @@
 package core.basesyntax;
 
-public class UserService extends PasswordValidator {
+public class UserService {
+    private final PasswordValidator passwordValidator = new PasswordValidator();
 
-    public void registerUser(User user, String password,
-                             String repeatPassword)
-            throws PasswordValidationException {
-        if (!password.equals(repeatPassword)) {
-            throw new PasswordValidationException("Passwords do not match");
+    public void registerUser(User user) {
+        try {
+            passwordValidator.validate(user.getPassword(), user.getRepeatPassword());
+            saveUser(user);
+        } catch (PasswordValidationException e) {
+            System.out.println(e.getMessage());
         }
-
-        validate(password, repeatPassword);
-        // этот метод кидает checked exception, поэтому throws надо здесь
-        saveUser(user);
     }
 
     public void saveUser(User user) {
